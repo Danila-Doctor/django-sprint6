@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Лента записей{% endblock %}
+
+{% block content %}
+  <details class="intro" open>
+    <summary class="intro__hit" autofocus title="войти"></summary>
+    <div class="intro__stage">
+      <svg class="intro__svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <g class="shutter">
+          <circle class="ring outer" cx="100" cy="100" r="54" stroke-width="1.5"></circle>
+          <circle class="ring inner" cx="100" cy="100" r="26" stroke-width="1.3"></circle>
+          <g class="dividers">
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(0,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(36,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(72,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(108,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(144,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(180,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(216,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(252,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(288,100,100)" class="divider"></line>
+            <line x1="100" y1="74" x2="100" y2="46" transform="rotate(324,100,100)" class="divider"></line>
+          </g>
+          <g class="rays-group">
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(18,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(54,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(90,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(126,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(162,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(198,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(234,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(270,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(306,100,100)" class="ray"></line>
+            <line x1="100" y1="89" x2="100" y2="60" transform="rotate(342,100,100)" class="ray"></line>
+          </g>
+        </g>
+        <circle class="dot" cx="100" cy="100" r="5"></circle>
+      </svg>
+      <div class="intro__wordmark">
+        <span class="word w-catch">catch</span>
+        <span class="word w-the">the</span>
+        <span class="word w-moment">moment</span>
+      </div>
+      <div class="intro__hint">нажмите, чтобы войти</div>
+    </div>
+  </details>
+
+  <div class="feed-head">
+    <h1>Лента записей</h1>
+    <div class="sub">Личные дневники catch the moment</div>
+  </div>
+
+  {% for post in posts reversed %}
+    <a class="post" href="{% url 'blog:post_detail' post.id %}">
+      <div class="avatar">{{ post.category|first|upper }}</div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="name">{{ post.location }}</span>
+          <span class="cat">#{{ post.category }}</span>
+          <span class="dot">·</span>
+          <span>{{ post.date }}</span>
+        </div>
+        <div class="post-text">{{ post.text|truncatewords:30 }}</div>
+        <div class="post-foot">
+          <span class="read-more">Читать полный текст →</span>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+{% endblock %}

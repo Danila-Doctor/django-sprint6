@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{% static 'img/fav/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static 'img/fav/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static 'img/fav/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}catch the moment{% endblock %}</title>
+  </head>
+  <body>
+    <div class="layout">
+
+      <header class="sidebar">
+        <div class="sidebar-inner">
+          <a class="brand" href="{% url 'blog:index' %}">
+            <img class="brand-logo" src="{% static 'img/catchmoment-logo.jpg' %}"
+                 width="64" height="64" alt="">
+            <span class="brand-wordmark">
+              <span class="catch">catch</span>
+              <span class="the">the</span>
+              <span class="moment">moment</span>
+            </span>
+          </a>
+          <nav class="nav">
+            <a class="nav-link" href="{% url 'blog:index' %}">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.6" stroke-linecap="round">
+                <line x1="4" y1="7" x2="20" y2="7"/>
+                <line x1="4" y1="12" x2="20" y2="12"/>
+                <line x1="4" y1="17" x2="13" y2="17"/>
+              </svg><span class="label">Лента записей</span>
+            </a>
+            <a class="nav-link" href="{% url 'pages:about' %}">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.6" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"/>
+                <line x1="12" y1="11" x2="12" y2="16"/>
+                <line x1="12" y1="8" x2="12" y2="8"/>
+              </svg><span class="label">О проекте</span>
+            </a>
+            <a class="nav-link" href="{% url 'pages:rules' %}">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="3" width="14" height="18" rx="2"/>
+                <line x1="8.5" y1="9" x2="15.5" y2="9"/>
+                <line x1="8.5" y1="12.5" x2="15.5" y2="12.5"/>
+                <line x1="8.5" y1="16" x2="12.5" y2="16"/>
+              </svg><span class="label">Наши правила</span>
+            </a>
+          </nav>
+          <div class="sidebar-spacer"></div>
+          <div class="sidebar-foot">© catch the moment</div>
+        </div>
+      </header>
+
+      <main class="feed">
+        {% block content %}{% endblock %}
+      </main>
+
+      <aside class="aside">
+        {% block aside %}
+          <div class="aside-box">
+            <h2>О catch the moment</h2>
+            <p class="aside-text">
+              Дом для творческих людей. Публикуйте посты, отмечайте
+              категорию и место — и читайте чужие дневники.
+            </p>
+          </div>
+          <div class="aside-box">
+            <h2>Категории</h2>
+            <div class="aside-item">
+              <a class="cat" href="{% url 'blog:category_posts' 'travel' %}">#travel</a>
+              <div class="s">Путешествия</div>
+            </div>
+            <div class="aside-item">
+              <a class="cat" href="{% url 'blog:category_posts' 'not-my-day' %}">#not-my-day</a>
+              <div class="s">Не мой день</div>
+            </div>
+            <div class="aside-item">
+              <a class="cat" href="{% url 'blog:category_posts' 'no-bad-days' %}">#no-bad-days</a>
+              <div class="s">Нет плохих дней</div>
+            </div>
+          </div>
+        {% endblock %}
+      </aside>
+
+    </div>
+  </body>
+</html>

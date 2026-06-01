@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.location }}. {{ post.date }}{% endblock %}
+
+{% block content %}
+  <div class="feed-head">
+    <h1>Пост</h1>
+    <div class="sub"><a class="read-more" href="{% url 'blog:index' %}">← к ленте</a></div>
+  </div>
+
+  <article class="post-single">
+    <div class="head">
+      <div class="avatar">{{ post.category|first|upper }}</div>
+      <div>
+        <div class="post-meta post-meta-name">
+          <span class="name">{{ post.location }}</span>
+        </div>
+        <div class="post-meta">
+          <a class="cat" href="{% url 'blog:category_posts' post.category %}">#{{ post.category }}</a>
+          <span class="dot">·</span>
+          <span>{{ post.date }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="post-text">{{ post.text|linebreaksbr }}</div>
+    <div class="post-foot">
+      {{ post.location }} ·
+      <a class="cat" href="{% url 'blog:category_posts' post.category %}">#{{ post.category }}</a>
+    </div>
+  </article>
+{% endblock %}
